@@ -15,8 +15,9 @@
         "php": ">=5.0.0"
     },
     "autoload": {
-        "classmap": ["lib/DirectAdmin.php"],
-	"psr-0": {"DirectAdmin": "lib/"}
-    },
+        "DirectAdmin": {
+            "lib\\": ""
+        }
+    }
     "license": "LGPL-2.1"
 }
