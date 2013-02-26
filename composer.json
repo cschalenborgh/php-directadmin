@@ -14,10 +14,9 @@
     "require": {
         "php": ">=5.0.0"
     },
+
     "autoload": {
-        "DirectAdmin": {
-            "lib\\": ""
-        }
+        "psr-0": {"DirectAdmin": "lib/"}
     },
     "license": "LGPL-2.1"
 }

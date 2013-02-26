@@ -15,7 +15,7 @@ namespace lib\DirectAdmin;
  * @package HTTPSocket
  * @version 2.6
  */
-class HTTPSocket {
+class DirectAdmin {
 
     var $version = '2.6';
 
