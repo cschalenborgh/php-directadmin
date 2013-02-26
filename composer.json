@@ -1,11 +1,13 @@
 {
     "name": "directadmin/directadmin",
+    "type": "library",
     "description": "DirectAdmin API PHP class",
     "keywords": ["directadmin","php"],
     "authors": [
         {
             "name": "Chris Schalenborgh",
-            "email": "chris.s@kryap.com"
+            "email": "chris.s@kryap.com",
+	    "homepage": "http://chris.schalenborgh.be/blog/"
         }
     ],
     "require": {
