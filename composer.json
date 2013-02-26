@@ -1,5 +1,5 @@
 {
-    "name": "DirectAdmin",
+    "name": "php-directadmin",
     "description": "DirectAdmin API PHP class",
     "authors": [
         {
