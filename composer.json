@@ -18,6 +18,6 @@
         "DirectAdmin": {
             "lib\\": ""
         }
-    }
+    },
     "license": "LGPL-2.1"
 }
