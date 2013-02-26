@@ -1,0 +1,17 @@
+{
+    "name": "DirectAdmin",
+    "description": "DirectAdmin API PHP class",
+    "authors": [
+        {
+            "name": "Chris Schalenborgh",
+            "email": "chris.s@kryap.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.0.0"
+    },
+    "autoload": {
+        "classmap": ["lib/DirectAdmin.php"]
+    },
+    "license": "LGPL-2.1"
+}
