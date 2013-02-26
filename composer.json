@@ -1,5 +1,6 @@
 {
     "name": "directadmin/directadmin",
+    "version": "0.1",
     "type": "library",
     "description": "DirectAdmin API PHP class",
     "keywords": ["directadmin","php"],
