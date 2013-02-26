@@ -1,6 +1,7 @@
 {
-    "name": "php/directadmin",
+    "name": "directadmin/directadmin",
     "description": "DirectAdmin API PHP class",
+    "keywords": ["directadmin","php"],
     "authors": [
         {
             "name": "Chris Schalenborgh",
