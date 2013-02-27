@@ -1,11 +1,12 @@
 <?
 /**
  *
- * DirectAdmin API
+ * DirectAdmin API implementation
  *
  * @author Chris Schalenborgh <chris.s@kryap.com>
  * @version 0.1
  * @link http://www.directadmin.com/api.html
+ *
  */
 
 
