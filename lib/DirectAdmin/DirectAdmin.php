@@ -21,7 +21,7 @@ namespace DirectAdmin;
  * added isset to headers['location'], line 306
 
  */
-class HTTPSocket {
+class DirectAdmin {
 
     var $version = '2.7';
 	
