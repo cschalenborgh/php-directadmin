@@ -15,7 +15,13 @@ namespace DirectAdmin;
  *
  * @author Phi1 'l0rdphi1' Stier <l0rdphi1@liquenox.net>
  * @package HTTPSocket
- * @version 2.7.1
+ * @version 2.7.2
+
+ * 2.7.2
+ * added x-use-https header check
+ * added max number of location redirects
+ * added custom settable message if x-use-https is found, so users can be told where to set their scripts
+ * if a redirect host is https, add ssl:// to remote_host
 
  * 2.7.1
  * added isset to headers['location'], line 306
@@ -23,7 +29,7 @@ namespace DirectAdmin;
  */
 class DirectAdmin {
 
-    var $version = '2.7';
+	var $version = '2.7.2';
 	
 	/* all vars are private except $error, $query_cache, and $doFollowLocationHeader */
 
@@ -49,6 +55,8 @@ class DirectAdmin {
 
 	var $doFollowLocationHeader = TRUE;
 	var $redirectURL;
+	var $max_redirects = 5;
+	var $ssl_setting_message = 'DirectAdmin appears to be using SSL. Change your script to connect to ssl://';
 
 	var $extra_headers = array();
 
@@ -120,14 +128,18 @@ class DirectAdmin {
 		$this->result_status_code = NULL;
 
 		// is our request a http:// ... ?
-		if (preg_match('!^http://!i',$request))
+		if (preg_match('!^http://!i',$request) || preg_match('!^https://!i',$request))
 		{
 			$location = parse_url($request);
-			$this->connect($location['host'],$location['port']);
+			if (preg_match('!^https://!i',$request))
+				$this->connect('ssl://'.$location['host'],$location['port']);
+			else
+				$this->connect($location['host'],$location['port']);
 			$this->set_login($location['user'],$location['pass']);
-			
+
 			$request = $location['path'];
 			$content = $location['query'];
+
 
 			if ( strlen($request) < 1 )
 			{
@@ -311,8 +323,16 @@ class DirectAdmin {
 		// now, if we're being passed a location header, should we follow it?
 		if ($this->doFollowLocationHeader)
 		{
+			//dont bother if we didn't even setup the script correctly
+			if (isset($headers['x-use-https']) && $headers['x-use-https']=='yes')
+				die($this->ssl_setting_message);
+
 			if (isset($headers['location']))
 			{
+				if ($this->max_redirects <= 0)
+					die("Too many redirects on: ".$headers['location']);
+
+				$this->max_redirects--;
 				$this->redirectURL = $headers['location'];
 				$this->query($headers['location']);
 			}
@@ -440,4 +460,12 @@ class DirectAdmin {
 		return $x;
 	}
 
+
+	/**
+	 * Set a specifc message on how to change the SSL setting, in the event that it's not set correctly.
+	 */
+	function set_ssl_setting_message($str)
+	{
+		$this->ssl_setting_message = $str;
+	}
 }
