@@ -15,7 +15,10 @@ namespace DirectAdmin;
  *
  * @author Phi1 'l0rdphi1' Stier <l0rdphi1@liquenox.net>
  * @package HTTPSocket
- * @version 3.0.1
+ * @version 3.0.2
+
+ * 3.0.2
+ * added longer curl timeouts
 
  * 3.0.1
  * support for tcp:// conversion to http://
@@ -35,7 +38,7 @@ namespace DirectAdmin;
  */
 class DirectAdmin {
 
-	var $version = '3.0.1';
+	var $version = '3.0.2';
 
 	/* all vars are private except $error, $query_cache, and $doFollowLocationHeader */
 
@@ -211,12 +214,12 @@ class DirectAdmin {
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
 		curl_setopt($ch, CURLOPT_USERAGENT, "HTTPSocket/$this->version");
 		curl_setopt($ch, CURLOPT_FORBID_REUSE, 1);
-		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 100);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
 		curl_setopt($ch, CURLOPT_HEADER, 1);
 
-		curl_setopt($ch, CURLOPT_LOW_SPEED_LIMIT, 51200);
-		curl_setopt($ch, CURLOPT_LOW_SPEED_TIME, 5);
+		curl_setopt($ch, CURLOPT_LOW_SPEED_LIMIT, 512);
+		curl_setopt($ch, CURLOPT_LOW_SPEED_TIME, 120);
 
 		//if ($this->doFollowLocationHeader)
 		//{
